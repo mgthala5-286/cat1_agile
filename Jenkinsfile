@@ -1,26 +1,25 @@
 pipeline {
     agent any
-    parameters {
-        // Task 3: Keeping the parameter for verification
-        string(name: 'MESSAGE', defaultValue: 'Version 2 Test', description: 'Enter message')
-    }
+
     stages {
         stage('Task 1: Checkout') {
             steps {
-                // Task 1: Pulls the updated code you are pushing now
+                // Task 1: Pulls the latest commit from your GitHub repository
                 checkout scm
             }
         }
-        stage('Task 2: Display System Date') {
+
+        stage('Task 2: Create output.txt') {
             steps {
-                // Task 2: Windows command to show current date
-                bat "date /t"
+                // Task 2: Uses the BAT 'echo' command and '>' to create a file
+                bat "echo Welcome to Version 3 - File Creation > output.txt"
             }
         }
-        stage('Task 3: Verify Parameter') {
+
+        stage('Task 3: Display File Content') {
             steps {
-                // Task 3: Prints parameter again to verify it works in Version 2
-                echo "Verified parameter value: ${params.MESSAGE}"
+                // Task 3: Uses the BAT 'type' command to show the file contents
+                bat "type output.txt"
             }
         }
     }
