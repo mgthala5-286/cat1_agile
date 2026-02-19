@@ -1,26 +1,26 @@
 pipeline {
     agent any
     parameters {
-        // Task 2: Define the MESSAGE parameter
-        string(name: 'MESSAGE', defaultValue: 'Experiment 1: Version 1', description: 'Enter a custom message')
+        // Task 3: Keeping the parameter for verification
+        string(name: 'MESSAGE', defaultValue: 'Version 2 Test', description: 'Enter message')
     }
     stages {
         stage('Task 1: Checkout') {
             steps {
-                // Task 1: Verify GitHub integration
+                // Task 1: Pulls the updated code you are pushing now
                 checkout scm
             }
         }
-        stage('Task 2: Print Parameter') {
+        stage('Task 2: Display System Date') {
             steps {
-                // Task 2: Print the parameter value
-                echo "The parameter value is: ${params.MESSAGE}"
+                // Task 2: Windows command to show current date
+                bat "date /t"
             }
         }
-        stage('Task 3: Execute BAT') {
+        stage('Task 3: Verify Parameter') {
             steps {
-                // Task 3: Execute Windows batch command
-                bat "echo Hello from Jenkins"
+                // Task 3: Prints parameter again to verify it works in Version 2
+                echo "Verified parameter value: ${params.MESSAGE}"
             }
         }
     }
